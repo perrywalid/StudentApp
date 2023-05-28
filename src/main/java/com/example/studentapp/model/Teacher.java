@@ -1,11 +1,11 @@
 package com.example.studentapp.model;
 
+import com.example.studentapp.enums.Level;
+import com.example.studentapp.enums.TeacherStatus;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @Entity
@@ -17,6 +17,11 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String firstName;
+
+    private String lastName;
+
+    @Column(unique = true)
     private String email;
 
     private String password;
@@ -31,14 +36,19 @@ public class Teacher {
 
     private String city;
 
-    private String description;
+    private String experience;
 
+    @Transient
+    private List<Long> subjectIds;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "teacher_subject",
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "subject_id")
     )
-    private Set<Subject> subjects = new HashSet<>();
+    private List<Subject> subjects = new LinkedList<>();
     private Float wallet;
+    private TeacherStatus status;
+    private Float hourlyRate;
+    private Level rate;
 }

@@ -1,8 +1,7 @@
 package com.example.studentapp.enums;
 
-public enum SessionStatus {
+public enum TeacherStatus {
     PENDING,
     ACCEPTED,
-    REJECTED,
-    PENDINGPAYMENT
+    REJECTED
 }
