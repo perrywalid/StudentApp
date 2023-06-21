@@ -3,6 +3,8 @@ package com.example.studentapp.model;
 import com.example.studentapp.enums.Level;
 import com.example.studentapp.enums.TeacherStatus;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.*;
@@ -26,6 +28,9 @@ public class Teacher {
 
     private String password;
 
+    private String confirmPassword;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
 
     private String mobileNumber;
@@ -36,19 +41,42 @@ public class Teacher {
 
     private String city;
 
+    private String nationality;
+
     private String experience;
 
-    @Transient
-    private List<Long> subjectIds;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "teacher_subject",
-            joinColumns = @JoinColumn(name = "teacher_id"),
-            inverseJoinColumns = @JoinColumn(name = "subject_id")
-    )
-    private List<Subject> subjects = new LinkedList<>();
     private Float wallet;
+
+    @Enumerated(EnumType.STRING)
     private TeacherStatus status;
+
     private Float hourlyRate;
-    private Level rate;
+
+    @Enumerated(EnumType.STRING)
+    private Level level;
+
+    private float hoursTaught;
+
+    @Column(columnDefinition = "bit default 1")
+    private boolean firstLogin;
+
+    private String educationSystem;
+
+    private String schoolGrade;
+
+    private Float rating;
+
+    private String nationalId;
+
+    private String subjects;
+
+    @Transient
+    private MultipartFileWrapper profilePictureMulti;
+
+    @Transient
+    private String base64EncodedImage;
+
+    @Lob
+    private byte[] profilePicture;
+
 }

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Tutoring</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link th:href="@{/css/homepage.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha384-..."
+          crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+            margin-left: 20%;
+        }
+
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+            align-items: center;
+            margin-right: 42.5%;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 30px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .rating label:before {
+            content: '\2606';
+        }
+
+        .rating input:checked ~ label:before {
+            content: '\2605';
+            color: #f9bf3b;
+        }
+
+
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            -right: 50%;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .content {
+            flex: 1;
+        footer {
+            background-color: #f9f9f9;
+            padding: 20px 0;
+            position: relative;
+            margin-top: 200px;
+
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1 1 300px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            background-color: #ddd;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #555;
+            font-size: 14px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="banner">
+    <div class="nav">
+        <img th:src="@{/img/logo.jpg}" class="logo">
+
+        <ul>
+            <li><strong><span th:text="${student.firstName} + ' ' + ${student.lastName}"></span></strong></li>
+            <li><a th:href="'/students/home?studentId=' + ${student.getId()}">Home</a></li>
+            <li><a th:href="'/students/session-request-list/' + ${student.getId()}">Request List</a></li>
+            <li><a th:href="'/students/tutor-selection/' + ${student.getId()}">Explore Tutors</a></li>
+            <li><a th:href="'/students/upcoming-sessions/' + ${student.getId()}">Session Schedule</a></li>
+
+
+            <li><a href="#">About us</a></li>
+
+            <li><a href=>Settings</a>
+                <div class="accounts">
+                    <ul>
+                        <li><a href="/students/logout">Logout</a></li>
+                        <li><a th:href="'/students/delete/' + ${student.getId()}"> Delete account</a></li>
+                    </ul>
+                </div>
+        </ul>
+    </div>
+
+
+    <div class="container">
+        <h1>Rate and Review Your Session</h1>
+        <form th:action="@{/students/submit-review/{id}/{sessionId}(id=${id},sessionId=${sessionId})}" method="post">
+            <div class="rating">
+                <input type="radio" id="star5" name="rating" value="5"/>
+                <label for="star5" title="5 stars"></label>
+                <input type="radio" id="star4" name="rating" value="4"/>
+                <label for="star4" title="4 stars"></label>
+                <input type="radio" id="star3" name="rating" value="3"/>
+                <label for="star3" title="3 stars"></label>
+                <input type="radio" id="star2" name="rating" value="2"/>
+                <label for="star2" title="2 stars"></label>
+                <input type="radio" id="star1" name="rating" value="1"/>
+                <label for="star1" title="1 star"></label>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <br> <br>
+    </div>
+
+</div>
+
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h2>Tutorium</h2>
+        </div>
+        <div class="footer-section contact">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <p><i class="fa fa-phone"></i> +20 1019824220 </p>
+                <p><i class="fa fa-envelope"></i> tutorium@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-section social">
+            <h2>Follow Us</h2>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/tutorium108/?igshid=OGQ5ZDc2ODk2ZA%3D%3D"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 Tutorium. All rights reserved.</p>
+    </div>
+</footer>
+</section>
+
+</body>

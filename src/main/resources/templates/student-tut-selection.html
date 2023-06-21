@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tutoring</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link th:href="@{/css/homepage.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha384-..."
+          crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+<title>Lets find you a Tutor</title>
+<style>
+    .search-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        margin-left: 70%;
+    }
+
+    .search-bar input[type="text"] {
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+
+    .search-bar button {
+        background-color: #2b7abf;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+
+    .tutor-card {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .tutor-card img {
+        width: 100px;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .tutor-card .tutor-info {
+        flex-grow: 1;
+    }
+
+    .tutor-card h3 {
+        margin: 0;
+    }
+
+    .tutor-card p {
+        margin-top: 5px;
+    }
+
+    .select-button {
+        background-color: #2b7abf;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 10px 30px;
+    }
+
+    .search-bar {
+        margin-bottom: 20px;
+    }
+
+    .request-list {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .request-list h3 {
+        margin-top: 0;
+    }
+
+    .request {
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .request p {
+        margin: 0;
+    }
+
+    .request .status {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .request.pending {
+        border-color: #ff9800;
+        color: #ff9800;
+    }
+
+    .request.rejected {
+        border-color: #f44336;
+        color: #f44336;
+    }
+
+    .request.accepted {
+        border-color: #4caf50;
+        color: #4caf50;
+    }
+
+    .request.accepted .payment-link {
+        display: block;
+        margin-top: 10px;
+    }
+
+    :root {
+        --star-size: 25px;
+        --star-color: #fff;
+        --star-background: #fc0;
+    }
+
+    .Stars {
+        --percent: calc(var(--rating) / 5 * 100%);
+
+        display: inline-block;
+        font-size: var(--star-size);
+        font-family: Times;
+    / / make sure ★ appears correctly line-height: 1;
+
+    &
+    ::before {
+        content: '★★★★★';
+        letter-spacing: 3px;
+        background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    }
+
+
+    .content {
+        flex: 1;
+    }
+
+    footer {
+        background-color: #f9f9f9;
+        padding: 20px 0;
+        position: relative;
+        margin-top: 900px;
+
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .footer-section {
+        flex: 1 1 300px;
+        margin-bottom: 20px;
+    }
+
+    .footer-section h2 {
+        color: #333;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .footer-section p {
+        color: #777;
+        font-size: 14px;
+    }
+
+    .contact-info p {
+        margin-bottom: 5px;
+    }
+
+    .social-links a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #555;
+        font-size: 18px;
+    }
+
+    .footer-bottom {
+        background-color: #ddd;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .footer-bottom p {
+        color: #555;
+        font-size: 14px;
+        margin: 0;
+    }
+
+</style>
+</head>
+<body>
+<div class="banner">
+    <div class="nav">
+        <img th:src="@{/img/logo.jpg}" class="logo">
+
+        <ul>
+            <li><strong>Welcome, <span th:text="${student.firstName} + ' ' + ${student.lastName}"></span></strong></li>
+            <li><a th:href="'/students/home?studentId=' + ${student.getId()}">Home</a></li>
+            <li><a th:href="'/students/session-request-list/' + ${student.getId()}">Request List</a></li>
+            <li><a th:href="'/students/tutor-selection/' + ${student.getId()}">Explore Tutors</a></li>
+            <li><a th:href="'/students/upcoming-sessions/' + ${student.getId()}">Session Schedule</a></li>
+
+
+            <li><a href="#">About us</a></li>
+
+            <li><a href=>Settings</a>
+                <div class="accounts">
+                    <ul>
+                        <li><a href="/students/logout">Logout</a></li>
+                        <li><a th:href="'/students/delete/' + ${student.getId()}"> Delete account</a></li>
+                    </ul>
+                </div>
+        </ul>
+    </div>
+
+    <div class="search-bar">
+        <form th:action="@{/students/tutor-selection/{id}(id=${student.id})}" method="get">
+            <input type="text" name="subject" placeholder="Search by subject or name">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div th:each="teacher : ${teachers}" class="tutor-card">
+        <!--<img th:src="@{/teacher-image/${teacher.id}}" alt="Tutor Image">-->
+        <div class="tutor-info">
+            <img th:src="${'data:image/jpeg;base64,' + teacher.getBase64EncodedImage()}" alt="tutor">
+            <h3 th:text="${teacher.firstName} + ' ' + ${teacher.lastName}"></h3>
+            <p th:text="'Experience: ' + ${teacher.experience}"></p>
+            <p th:text="'Hours taught: ' + ${teacher.hoursTaught}"></p>
+            <p th:text="'Subjects: ' + ${teacher.subjects}"></p>
+            <p th:text="'Hourly rate: ' + ${teacher.hourlyRate} + ' EGP/hour'"></p>
+            <div class="Stars" th:style="'--rating: ' + ${teacher.rating}"></div>
+        </div>
+        <button th:onclick="|window.location.href='/students/session-request/' + ${student.getId()} + '/' + ${teacher.id}|"
+                class="select-button">Select Tutor
+        </button>
+    </div>
+</div>
+<footer>
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h2>Tutorium</h2>
+        </div>
+        <div class="footer-section contact">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <p><i class="fa fa-phone"></i> +20 1019824220 </p>
+                <p><i class="fa fa-envelope"></i> tutorium@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-section social">
+            <h2>Follow Us</h2>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/tutorium108/?igshid=OGQ5ZDc2ODk2ZA%3D%3D"><i
+                        class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 Tutorium. All rights reserved.</p>
+    </div>
+</footer>
+</section>
+
+</body>
+</html>

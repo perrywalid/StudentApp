@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tutoring</title>        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link th:href="@{/css/homepage.css}" rel="stylesheet"/>
+   <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    footer {
+        background-color: #f9f9f9;
+        padding: 20px 0;
+        position: relative;
+        margin-top: 200px;
+
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .footer-section {
+        flex: 1 1 300px;
+        margin-bottom: 20px;
+    }
+
+    .footer-section h2 {
+        color: #333;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .footer-section p {
+        color: #777;
+        font-size: 14px;
+    }
+
+    .contact-info p {
+        margin-bottom: 5px;
+    }
+
+    .social-links a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #555;
+        font-size: 18px;
+    }
+
+    .footer-bottom {
+        background-color: #ddd;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .footer-bottom p {
+        color: #555;
+        font-size: 14px;
+        margin: 0;
+    }
+</style>
+</head>
+<body>
+    <div class="banner">
+<div class="nav">
+    <img th:src="@{/img/logo.jpg}" class="logo">
+    <ul>
+        <li><a href="\">Create a new account</a>
+            <div class="accounts">
+            <ul>
+                <li><a href="/students/register"> Student</a></li>
+                <li><a href="/teachers/register">Tutor</a></li>
+            </ul>
+        </div>
+    </li> 
+       <li><a href=>Login as a</a>
+        <div class="accounts">
+            <ul>
+                <li><a href="/students/login"> Student</a></li>
+                <li><a href="/teachers/login">Tutor</a></li>
+            </ul>
+        </div>
+    
+    </li> 
+       <li><a href="#">Contact us</a></li>
+       
+
+
+    </ul>
+</div>
+
+    <!--AFTER TUTOR REGISTER-->
+    <div class="container">
+        <h2>Application Rejected</h2>
+        <p>We apologize, but your application has been rejected. Please try again at a later time.</p>
+
+        <button onclick="window.location.href = '/teachers/register' ">Register as a Tutor</button>
+    </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>Tutorium</h2>
+            </div>
+            <div class="footer-section contact">
+                <h2>Contact Us</h2>
+                <div class="contact-info">
+                    <p><i class="fa fa-phone"></i> +20 1019824220 </p>
+                    <p><i class="fa fa-envelope"></i> tutorium@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-section social">
+                <h2>Follow Us</h2>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/tutorium108/?igshid=OGQ5ZDc2ODk2ZA%3D%3D"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Tutorium. All rights reserved.</p>
+        </div>
+    </footer>
+    </section>
+
+
+
+</body>
+</html>
