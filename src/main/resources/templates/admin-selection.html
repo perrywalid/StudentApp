@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha384-..."
+          crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <style>
+        /* Main styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        /* Sidebar styles */
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .navbar h2 {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .user-profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .user-profile span {
+            font-size: 0.8rem;
+        }
+
+        .navbar-nav {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar-nav li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .navbar-nav li a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-nav li a:hover {
+            background-color: #555;
+        }
+
+        .active {
+            background-color: #555;
+        }
+
+        /* Media queries */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 10px;
+            }
+
+            .navbar h2 {
+                font-size: 1.2rem;
+            }
+
+            .user-profile img {
+                width: 25px;
+                height: 25px;
+            }
+
+            .user-profile span {
+                font-size: 0.7rem;
+            }
+
+            .navbar-nav li {
+                margin-right: 8px;
+            }
+
+            .navbar-nav li a {
+                font-size: 0.9rem;
+                padding: 6px;
+            }
+        }
+
+        /* Media queries */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 10px;
+            }
+
+            .navbar h2 {
+                font-size: 1.2rem;
+            }
+
+            .user-profile img {
+                width: 25px;
+                height: 25px;
+            }
+
+            .user-profile span {
+                font-size: 0.7rem;
+            }
+
+            .navbar-nav li {
+                margin-right: 8px;
+            }
+
+            .navbar-nav li a {
+                font-size: 0.9rem;
+                padding: 6px;
+            }
+        }
+
+        /* Content styles */
+        .content {
+            flex-grow: 1;
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .tutor-requests {
+            margin-bottom: 20px;
+        }
+
+        .tutor-request {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tutor-request img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .tutor-request .details {
+            flex-grow: 1;
+        }
+
+        .tutor-request .details h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .tutor-request .details p {
+            margin: 0;
+            color: #555;
+        }
+
+        .tutor-request .dropdown {
+            display: inline-block;
+            padding: 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-left: auto;
+            margin-right: 10px;
+        }
+
+        .tutor-request .dropdown select {
+            padding: 8px;
+            display: inline-block;
+            padding: 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+
+        }
+
+        .tutor-request .buttons {
+            margin-left: auto;
+        }
+
+        .tutor-request .buttons button {
+            padding: 8px 12px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .tutor-request .buttons .accept-button {
+            display: none;
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .tutor-request .buttons .accept-button:hover {
+            background-color: #45a049;
+        }
+
+        .tutor-request .buttons .reject-button {
+            background-color: #ff5c5c;
+            color: #fff;
+        }
+
+        .tutor-request .buttons .reject-button:hover {
+            background-color: #d14040;
+        }
+
+
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <h2>Admin Dashboard</h2>
+    <div class="user-profile">
+        <img src="add.jpg" alt="User Icon">
+        <span>Admin</span>
+    </div>
+    <ul class="navbar-nav">
+        <li><a href="#>" Modifications</a></li>
+        <li><a href="#">Check sessions</a></li>
+
+    </ul>
+</nav>
+<div class="content">
+    <div class="tutor-requests">
+        <div th:each="teacher : ${teachers}" class="tutor-request">
+            <img th:src="${'data:image/jpeg;base64,' + teacher.getBase64EncodedImage()}" alt="tutor">
+            <div class="details">
+                <h3><span th:text="${teacher.firstName}"></span> <span th:text="${teacher.lastName}"></span></h3>
+                <p>Email: <span th:text="${teacher.getEmail()}"></span></p>
+                <p>Phone: <span th:text="${teacher.getMobileNumber()}"></span></p>
+                <p>Nationality: <span th:text="${teacher.getNationality()}"></span></p>
+                <p>Experience: <span th:text="${teacher.getExperience()}"></span></p>
+            </div>
+            <div class="dropdown">
+                <select onchange="toggleAcceptButton(this)">
+                    <option value="" disabled selected hidden>Select Role</option>
+                    <option value="BRONZE">Bronze</option>
+                    <option value="SILVER">Silver</option>
+                    <option value="GOLD">Gold</option>
+                    <option value="PLATINUM">Platinum</option>
+                </select>
+            </div>
+            <div class="buttons">
+                <button class="accept-button" th:attr="onclick='acceptTeacher(\'' + ${teacher.id} + '\')'">Accept
+                </button>
+                <button class="reject-button" th:onclick="|window.location.href='/admin/reject/' + ${teacher.id}|">
+                    Reject
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleAcceptButton(selectElement) {
+        var acceptButton = selectElement.parentElement.nextElementSibling.querySelector('.accept-button');
+        if (selectElement.value !== "") {
+            acceptButton.style.display = 'inline-block';
+        } else {
+            acceptButton.style.display = 'none';
+        }
+    }
+
+    function acceptTeacher(teacherId) {
+        var level = document.querySelector('select').value;
+        var url = '/admin/accept/' + teacherId + '?level=' + level;
+        window.location.href = url;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Online Session Request</title>
+    <link th:href="@{/css/homepage.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha384-..."
+          crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            text-align: center;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #2b7abf;
+        }
+
+        .form-group input[type="datetime-local"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        /* Remove default arrow icon */
+        .form-group input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            display: none;
+        }
+
+        /* Custom styles for the date and time input */
+        .form-group input[type="datetime-local"] {
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Add border and background color on focus */
+        .form-group input[type="datetime-local"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 20px 0;
+            position: relative;
+            margin-top: 200px;
+
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1 1 300px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            background-color: #ddd;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #555;
+            font-size: 14px;
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="banner">
+    <div class="nav">
+        <img th:src="@{/img/logo.jpg}" class="logo">
+
+        <ul>
+            <li><strong><span th:text="${student.firstName} + ' ' + ${student.lastName}"></span></strong></li>
+            <li><a th:href="'/students/home?studentId=' + ${student.getId()}">Home</a></li>
+            <li><a th:href="'/students/session-request-list/' + ${student.getId()}">Request List</a></li>
+            <li><a th:href="'/students/tutor-selection/' + ${student.getId()}">Explore Tutors</a></li>
+            <li><a th:href="'/students/upcoming-sessions/' + ${student.getId()}">Session Schedule</a></li>
+
+
+            <li><a href="#">About us</a></li>
+
+            <li><a href=>Settings</a>
+                <div class="accounts">
+                    <ul>
+                        <li><a href="/students/logout">Logout</a></li>
+                        <li><a th:href="'/students/delete/' + ${student.getId()}"> Delete account</a></li>
+                    </ul>
+                </div>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Online Session Request</h2>
+        <form th:action="@{'/students/session-request/' + ${student.getId()} + '/' + ${teacher.getId()}}" method="post"
+              th:object="${sessionRequest}">
+
+            <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" name="subject" id="subject" required th:value="${sessionRequest.subject}">
+            </div>
+            <div class="form-group">
+                <label for="sessionHours">Session Hours</label>
+                <input type="text" name="sessionHours" id="sessionHours" required th:value="${sessionRequest.sessionHours}">
+            </div>
+            <div class=" form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" name="phoneNumber" id="phoneNumber" required th:value="${sessionRequest.phoneNumber}">
+            </div>
+
+                <div class=" form-group">
+                    <label for="requestedDateTime">Date and Time:</label>
+                    <input type="datetime-local" name="requestedDateTime" id="requestedDateTime" required
+                           th:value="${sessionRequest.requestedDateTime}">
+                </div>
+
+            <div class=" form-group">
+                <label for="notes">Notes:</label>
+                <textarea name="notes" id="notes" rows="5" th:value="${sessionRequest.notes}"></textarea>
+            </div>
+
+            <div class=" form-group">
+                <button type="submit">Send Request</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>Tutorium</h2>
+            </div>
+            <div class="footer-section contact">
+                <h2>Contact Us</h2>
+                <div class="contact-info">
+                    <p><i class="fa fa-phone"></i> +20 1019824220</p>
+                    <p><i class="fa fa-envelope"></i> tutorium108@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-section social">
+                <h2>Follow Us</h2>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/tutorium108/?igshid=OGQ5ZDc2ODk2ZA%3D%3D"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Tutorium. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+

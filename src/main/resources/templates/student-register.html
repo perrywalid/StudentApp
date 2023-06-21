@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- Coding by CodingLab | www.codinglabweb.com-->
+<html lang="en" dir="ltr">
+<head>
+    <title>Register</title>
+    <meta charset="UTF-8">
+    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
+    <link th:href="@{/css/homepage.css}" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-..."
+          crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 70%;
+            margin: 0 auto;
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="date"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #2b7abf;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 42.5%;
+        }
+
+
+        .content {
+            flex: 1;
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 20px 0;
+            position: relative;
+            margin-top: 200px;
+
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1 1 300px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            background-color: #ddd;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #555;
+            font-size: 14px;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+<nav>
+    <div class="all">
+        <div class="nav">
+            <img th:src="@{/img/logo.jpg}" class="logo">
+            <ul>
+                <li><a href="/students/login">Already have an account?</a></li>
+                <li><a href="/home">home</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h2>Welcome to Tutorium!</h2>
+    <small class="text-muted">Personal Information <br> <br> </small>
+    <!--TODO: INSERT STUDENT REGISTER JAVA LINK-->
+
+    <form action="/students/register" method="post" th:object="${student}">
+
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" placeholder="First Name" required
+                   th:value="${student.firstName}">
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required
+                   th:value="${student.lastName}">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email" required
+                   th:value="${student.email}">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Password" required
+                   th:value="${student.password}">
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Password" required
+                   th:value="${student.confirmPassword}">
+        </div>
+
+        <div class="form-group">
+            <label for="dateOfBirth">Birthdate:</label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" placeholder="Birthdate" required
+                   th:value="${#dates.format(student.dateOfBirth, 'yyyy-MM-dd')}">
+        </div>
+
+
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="Male" th:selected="${student.gender == 'Male'}">Male</option>
+                <option value="Female" th:selected="${student.gender == 'Female'}">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" placeholder="Phone Number" required
+                   th:value="${student.phone}">
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3" placeholder="Address" required
+                      th:text="${student.address}"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" placeholder="City/Region" required
+                   th:value="${student.city}">
+        </div>
+
+        <small class="text-muted">Educational Information <br> <br> </small>
+
+        <div class="form-group">
+            <label for="schoolGrade">School Grade</label>
+            <input type="text" id="schoolGrade" name="schoolGrade" placeholder="School Grade" required
+                   th:value="${student.schoolGrade}">
+        </div>
+
+        <div class="form-group">
+            <label for="educationalSystem">Educational System</label>
+            <input type="text" id="educationalSystem" name="educationalSystem" placeholder="Education System" required
+                   th:value="${student.educationalSystem}">
+        </div>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+</div>
+
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h2>Tutorium</h2>
+        </div>
+        <div class="footer-section contact">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <p><i class="fa fa-phone"></i> +20 1019824220 </p>
+                <p><i class="fa fa-envelope"></i> tutorium@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-section social">
+            <h2>Follow Us</h2>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/tutorium108/?igshid=OGQ5ZDc2ODk2ZA%3D%3D"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 Tutorium. All rights reserved.</p>
+    </div>
+</footer>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        /* Sidebar styles */
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .navbar h2 {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .user-profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .user-profile span {
+            font-size: 0.8rem;
+        }
+
+        .navbar-nav {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar-nav li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .navbar-nav li a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-nav li a:hover {
+            background-color: #555;
+        }
+
+        .active {
+            background-color: #555;
+        }
+
+        /* Media queries */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 10px;
+            }
+
+            .navbar h2 {
+                font-size: 1.2rem;
+            }
+
+            .user-profile img {
+                width: 25px;
+                height: 25px;
+            }
+
+            .user-profile span {
+                font-size: 0.7rem;
+            }
+
+            .navbar-nav li {
+                margin-right: 8px;
+            }
+
+            .navbar-nav li a {
+                font-size: 0.9rem;
+                padding: 6px;
+            }
+        }
+
+
+    h1 {
+        margin: 0;
+    }
+
+    .session-requests,
+    .session-updates {
+        margin: 20px;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+
+    .requests-list,
+    .updates-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <h2>Admin Dashboard</h2>
+    <div class="user-profile">
+        <img src="add.jpg" alt="User Icon">
+        <span>Admin</span>
+    </div>
+    <ul class="navbar-nav">
+        <li><a href="#">Requests</a></li>
+        <li><a href="#">Modifications</a></li>
+
+    </ul>
+</nav>
+<div class="session-requests">
+    <h2>Session Requests</h2>
+    <ul class="requests-list">
+        <li th:each="request: ${requests}">
+            <h3>Tutor: <span th:text="${request.getTeacher().firstName + ' ' + request.getTeacher().lastName}"></span></h3>
+            <p>Student: <span th:text="${request.getStudent().firstName + ' ' + request.getStudent().lastName}"></span></p>
+            <p>Date: <span th:text="${request.getRequestedDateTime().toLocalDate()}"></span></p>
+            <p>Start Time: <span th:text="${request.getRequestedDateTime().toLocalTime()}"></span></p>
+            <p>Duration: <span th:text="${request.getSessionHours()}"></span></p>
+            <p>Status: <span th:text="${request.getStatus()}"></span></p>
+        </li>
+        <!-- Add more session request entries here -->
+    </ul>
+</div>
+
+<div class="session-updates">
+    <h2>Session Updates</h2>
+    <li th:each="request: ${updates}">
+        <h3>Tutor: <span th:text="${request.getTeacher().firstName + ' ' + request.getTeacher().lastName}"></span></h3>
+        <p>Student: <span th:text="${request.getStudent().firstName + ' ' + request.getStudent().lastName}"></span></p>
+        <p>Date: <span th:text="${request.getRequestedDateTime().toLocalDate()}"></span></p>
+        <p>Start Time: <span th:text="${request.getRequestedDateTime().toLocalTime()}"></span></p>
+        <p>Duration: <span th:text="${request.getSessionHours()}"></span></p>
+        <p>Status: <span th:text="${request.getStatus()}"></span></p>
+    </li>
+    <!-- Add more session request entries here -->
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tutorium</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../../../../Downloads/website%20(1)(5)/homepage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-..."
+  crossorigin="anonymous">
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  
+  <style>
+    /* Global Styles */
+
+body {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Styles */
+header{
+  max-height: 110px;
+
+}
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.carousel {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  animation: slide 20s infinite;
+}
+
+.slide {
+    position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('laaa.jpg'); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  33.33% {
+    transform: translateX(-100%);
+  }
+  66.66% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade {
+  0%, 100% {
+    opacity: 0;
+  }
+  10%, 90% {
+    opacity: 1;
+  }
+}
+
+.slide h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px; /* Adjust the font size as needed */
+  color: white; /* Adjust the text color as needed */
+  text-align: center;
+}
+
+h3{
+ margin-left: 40%;
+}
+
+
+
+/* Hero Section Styles */
+
+.hero-section {
+  color: #fff;
+  text-align: center;
+  padding: 100px 0;
+}
+
+.hero-content h1 {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  background-color: #fff;
+  color: #2980b9;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+  color: #fff;
+}
+
+/* Features Section Styles */
+
+.features-section {
+  display:flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.feature {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.feature img {
+  width: 80%;
+  height: auto;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.feature:hover img {
+  transform: scale(1.1);
+}
+
+
+.feature h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 16px;
+}
+
+
+/* Testimonial Section Styles */
+
+.testimonial-section {
+  background-color: #f5f5f5;
+  padding: 50px 0;
+}
+
+.testimonial {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.testimonial img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.testimonial blockquote {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.testimonial cite {
+  font-weight: bold;
+}
+
+/* Footer Styles */
+
+
+.content {
+  flex: 1;
+}
+
+footer {
+  background-color: #f9f9f9;
+  padding: 20px 0;
+  position: relative;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1 1 300px;
+  margin-bottom: 20px;
+}
+
+.footer-section h2 {
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  color: #777;
+  font-size: 14px;
+}
+
+.contact-info p {
+  margin-bottom: 5px;
+}
+
+.social-links a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #555;
+  font-size: 18px;
+}
+
+.footer-bottom {
+  background-color: #ddd;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: #555;
+  font-size: 14px;
+  margin: 0;
+}
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+  <div class="banner">
+    <div class="nav">
+      <img src="../../../../../../../../Downloads/website%20(1)(5)/logo.jpg" alt="logo" class="logo">
+      <h3>Welcome, User   <i class='far fa-user-circle' style='font-size:24px;color:#2b7abf ;'></i></h3>
+
+        <ul>
+            <li><a href=>Settings</a>
+                <div class="accounts">
+                    <ul>
+                        <li><a href="../../../../../../../../Downloads/website%20(1)(5)/home.html">Logout</a></li>
+                        <li><a href=";"> Delete account</a></li>
+                    </ul>
+                
+                        <li><a href="#">About us</a></li>
+
+                </div>
+            </li>
+        </ul>
+             
+    </header>
+    <div class="carousel-container">
+      <div class="carousel">
+        <div class="slide">
+          <h1> Welcome to Tutoruim: Your Gateway to Personalized Learning</h1>
+        </div>
+          <div class="slide">
+            <h1>Welcome to Tutoruim: Your Gateway to Personalized Learning</h1>
+          </div>
+          <div class="slide">
+            <h1>Welcome to Tutoruim: Your Gateway to Personalized Learning</h1>
+          </div>
+        </div>
+      </div>
+        
+  
+  <section class="features-section">
+    <div class="feature">
+      <img src="1pic.png" alt="Feature 1">
+      <h2>Flexible Learning</h2>
+      <p>Learn at your own pace and schedule. Access course materials anytime, anywhere.</p>
+    </div>
+    
+    <div class="feature">
+      <img src="2pic.jpg" alt="Feature 2">
+      <h2>Expert Instructors</h2>
+      <p>Learn from industry experts who have real-world experience and knowledge.</p>
+    </div>
+    
+    <div class="feature">
+      <img src="3pic.jpg" alt="Feature 3">
+      <h2>Interactive Learning</h2>
+      <p>Engage in interactive lessons, discussions, and quizzes to enhance your learning experience.</p>
+    </div>
+  </section>
+  
+  <section class="testimonial-section">
+    <h2>Classes we offer</h2>
+    <section class="features-section">
+      <div class="feature">
+        <img src="../../../../../../../../Downloads/website%20(1)(5)/math.jpg" alt="Feature 1">
+        <h2>Mathematics</h2>
+      </div>
+      
+      <div class="feature">
+        <img src="acco.jpg" alt="Feature 2">
+        <h2>Accounting</h2>
+      </div>
+      
+      <div class="feature">
+        <img src="geo.jpg" alt="Feature 3">
+        <h2>Geography</h2>
+      </div>
+    </section>
+    <section class="hero-section">
+      <div class="hero-content">
+        <a href="#" class="btn">Explore Tutors</a>
+      </div>
+    </section>
+  </section>
+
+    
+  
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h2>Tutorium</h2>
+<p>
+  Unlock your potential
+</p>        </div>
+        <div class="footer-section contact">
+          <h2>Contact Us</h2>
+          <div class="contact-info">
+            <p><i class="fa fa-phone"></i> +1 123 456 7890</p>
+            <p><i class="fa fa-envelope"></i> info@example.com</p>
+          </div>
+        </div>
+        <div class="footer-section social">
+          <h2>Follow Us</h2>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 Tutorium. All rights reserved.</p>
+      </div>
+    </footer>
+    
+</body>
+</html>

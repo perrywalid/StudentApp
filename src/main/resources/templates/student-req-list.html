@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Tutoring</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link th:href="@{/css/homepage.css}" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha384-..."
+          crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <style>
+        .request-list {
+            max-width: 70%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .request-list h3 {
+            margin-top: 0;
+        }
+
+        .request {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .request p {
+            margin: 0;
+        }
+
+        .status1 {
+            color: rgb(79, 111, 126);
+        }
+
+        .status2 {
+            color: rgb(223, 10, 10);
+        }
+
+        .status3 {
+            color: rgb(0, 175, 38);
+        }
+
+        .request .status {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .request.pending {
+            border-color: #ff9800;
+        }
+
+        .request.rejected {
+            border-color: #f44336;
+        }
+
+        .request.accepted {
+            border-color: #4caf50;
+        }
+
+        .request.accepted .payment-link {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 20px 0;
+            position: relative;
+            padding-top: 50px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1 1 300px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            background-color: #ddd;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #555;
+            font-size: 14px;
+            margin: 0;
+        }
+        footer {
+            background-color: #f9f9f9;
+            padding: 20px 0;
+            position: relative;
+            margin-top: 200px;
+
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1 1 300px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            background-color: #ddd;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #555;
+            font-size: 14px;
+            margin: 0;
+        }
+    </style>
+
+</head>
+<body>
+<div class="banner">
+    <div class="nav">
+        <img th:src="@{/img/logo.jpg}" class="logo">
+
+        <ul>
+            <li><strong><span th:text="${student.firstName} + ' ' + ${student.lastName}"></span></strong></li>
+            <li><a th:href="'/students/home?studentId=' + ${student.getId()}">Home</a></li>
+            <li><a th:href="'/students/session-request-list/' + ${student.getId()}">Request List</a></li>
+            <li><a th:href="'/students/tutor-selection/' + ${student.getId()}">Explore Tutors</a></li>
+            <li><a th:href="'/students/upcoming-sessions/' + ${student.getId()}">Session Schedule</a></li>
+
+
+            <li><a href="#">About us</a></li>
+
+            <li><a href=>Settings</a>
+                <div class="accounts">
+                    <ul>
+                        <li><a href="/students/logout">Logout</a></li>
+                        <li><a th:href="'/students/delete/' + ${student.getId()}"> Delete account</a></li>
+                    </ul>
+                </div>
+        </ul>
+    </div>
+
+    <div class="request-list">
+        <h3>Student Request List</h3>
+
+        <th:block th:each="sessionRequest : ${sessionRequests}">
+            <div th:if="${sessionRequest.getStatus().toString().compareTo('PENDING') == 0}">
+                <div class="request pending">
+                    <p class="status1">Pending</p>
+                    <p><strong>Teacher Name:</strong> <span th:text="${sessionRequest.getTeacher().firstName + ' ' + sessionRequest.getTeacher().lastName}"></span></p>
+                    <p><strong>Subject:</strong> <span th:text="${sessionRequest.subject}"></span></p>
+                    <p><strong>Phone Number:</strong> <span th:text="${sessionRequest.getPhoneNumber()}"></span></p>
+                    <p><strong>Date:</strong> <span th:text="${sessionRequest.getRequestedDateTime().toLocalDate()}"></span></p>
+                    <p><strong>Time:</strong> <span th:text="${sessionRequest.getRequestedDateTime().toLocalTime()}"></span></p>
+                    <p><strong>Notes:</strong> <span th:text="${sessionRequest.notes}"></span></p>
+                </div>
+            </div>
+            <div th:if="${sessionRequest.getStatus().toString().compareTo('PENDINGPAYMENT') == 0}">
+                <div class="request accepted">
+                    <p class="status3">Accepted</p>
+                    <p><strong>Teacher Name:</strong> <span th:text="${sessionRequest.getTeacher().firstName + ' ' + sessionRequest.getTeacher().lastName}"></span></p>
+                    <p><strong>Subject:</strong> <span th:text="${sessionRequest.subject}"></span></p>
+                    <p><strong>Phone Number:</strong> <span th:text="${sessionRequest.getPhoneNumber()}"></span></p>
+                    <p><strong>Date:</strong> <span th:text="${sessionRequest.getRequestedDateTime().toLocalDate()}"></span></p>
+                    <p><strong>Time:</strong> <span th:text="${sessionRequest.getRequestedDateTime().toLocalTime()}"></span></p>
+                    <p><strong>Notes:</strong> <span th:text="${sessionRequest.notes}"></span></p>
+                    <p><strong>Cost:</strong> <span th:text="${sessionRequest.getCost()}"></span></p>
+                    <a th:href="'/students/pay/' + ${student.getId()} + '/' + ${sessionRequest.getId()}" class="payment-link">Proceed to Payment</a>
+                </div>
+            </div>
+            <div th:if="${sessionRequest.getStatus().toString().compareTo('REJECTED') == 0}">
+                <div class="request reject">
+                    <p class="status2">Rejected</p>
+                    <p><strong>Teacher Name:</strong> <span th:text="${sessionRequest.getTeacher().firstName + ' ' + sessionRequest.getTeacher().lastName}"></span></p>
+                    <p><strong>Subject:</strong> <span th:text="${sessionRequest.subject}"></span></p>
+                    <p><strong>Phone Number:</strong> <span th:text="${sessionRequest.getPhoneNumber()}"></span></p>
+                    <p><strong>Date:</strong> <span th:text="${sessionRequest.getRequestedDateTime().toLocalDate()}"></span></p>
+                    <p><strong>Time:</strong> <span th:text="${sessionRequest.getRequestedDateTime().toLocalTime()}"></span></p>
+                    <p><strong>Notes:</strong> <span th:text="${sessionRequest.notes}"></span></p>
+                </div>
+            </div>
+        </th:block>
+
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>Tutorium</h2>
+            </div>
+            <div class="footer-section contact">
+                <h2>Contact Us</h2>
+                <div class="contact-info">
+                    <p><i class="fa fa-phone"></i> +20 1019824220 </p>
+                    <p><i class="fa fa-envelope"></i> tutorium@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-section social">
+                <h2>Follow Us</h2>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/tutorium108/?igshid=OGQ5ZDc2ODk2ZA%3D%3D"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Tutorium. All rights reserved.</p>
+        </div>
+    </footer>
+    </section>
+
+</div>
+</body>
+</html>

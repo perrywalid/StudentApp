@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link th:href="@{/css/homepage.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha384-..."
+          crossorigin="anonymous">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"/>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #2b7abf;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 28%;
+        }
+
+        .forgot-password {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 20px 0;
+            position: relative;
+            margin-top: 200px;
+
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1 1 300px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .footer-bottom {
+            background-color: #ddd;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #555;
+            font-size: 14px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="banner">
+    <div class="nav">
+        <img th:src="@{/img/logo.jpg}" class="logo">
+        <ul>
+            <li><a href="/home">Home</a></li>
+
+            <li><a href="#">Create a new account</a>
+                <div class="accounts">
+                    <ul>
+                        <li><a href="/students/register"> Student</a></li>
+                        <li><a href="/teachers/register">Tutor</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="#">About us</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Welcome back!</h2>
+        <small class="text-muted">Please Login to your account.<br> <br> </small>
+        <form action="#" th:action="@{/students/login}" method="post">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Please insert your email " required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Please insert you password" required>
+            </div>
+
+            <button type="submit" onclick="student-tut-selection.html">Login</button>
+
+            <a href="/students/forgot/" class="forgot-password">Forgot Password?</a>
+        </form>
+    </div>
+
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>Tutorium</h2>
+            </div>
+            <div class="footer-section contact">
+                <h2>Contact Us</h2>
+                <div class="contact-info">
+                    <p><i class="fa fa-phone"></i>+20 1019824220 </p>
+                    <p><i class="fa fa-envelope"></i> tutorium108@example.com</p>
+                </div>
+            </div>
+            <div class="footer-section social">
+                <h2>Follow Us</h2>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/tutorium108/?igshid=OGQ5ZDc2ODk2ZA%3D%3D"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Tutorium. All rights reserved.</p>
+        </div>
+    </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-..."
+crossorigin="anonymous">
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <style>
+    /* Main styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+    }
+
+    .container {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    /* Sidebar styles */
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .navbar h2 {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .user-profile img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .user-profile span {
+      font-size: 0.8rem;
+    }
+
+    .navbar-nav {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .navbar-nav li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .navbar-nav li a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 8px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar-nav li a:hover {
+      background-color: #555;
+    }
+
+    .active {
+      background-color: #555;
+    }
+
+    /* Media queries */
+    @media screen and (max-width: 768px) {
+      .navbar {
+        padding: 10px;
+      }
+
+      .navbar h2 {
+        font-size: 1.2rem;
+      }
+
+      .user-profile img {
+        width: 25px;
+        height: 25px;
+      }
+
+      .user-profile span {
+        font-size: 0.7rem;
+      }
+
+      .navbar-nav li {
+        margin-right: 8px;
+      }
+
+      .navbar-nav li a {
+        font-size: 0.9rem;
+        padding: 6px;
+      }
+    }
+
+    /* Content styles */
+    .content {
+      flex-grow: 1;
+      background-color: #fff;
+      padding: 20px;
+    }
+
+    .tutor-requests {
+      margin-bottom: 20px;
+    }
+
+    .tutor-request {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .tutor-request img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .tutor-request .details {
+      flex-grow: 1;
+    }
+
+    .tutor-request .details h3 {
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    .tutor-request .details p {
+      margin: 0;
+      color: #555;
+    }
+
+    .tutor-request .dropdown {
+        display: inline-block;
+        padding: 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+      margin-left: auto;
+      margin-right: 10px;
+    }
+
+    .tutor-request .dropdown select {
+      padding: 8px;
+      display: inline-block;
+        padding: 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+
+    }
+
+    .tutor-request .buttons {
+      margin-left: auto;
+    }
+
+    .tutor-request .buttons button {
+      padding: 8px 12px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .tutor-request .buttons .accept-button {
+      display: none;
+      background-color: #4CAF50;
+      color: #fff;
+    }
+
+    .tutor-request .buttons .accept-button:hover {
+      background-color: #45a049;
+    }
+
+    .tutor-request .buttons .reject-button {
+      background-color: #ff5c5c;
+      color: #fff;
+    }
+
+    .tutor-request .buttons .reject-button:hover {
+      background-color: #d14040;
+    }
+     
+
+
+
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h2>Admin Dashboard</h2>
+        <div class="user-profile">
+          <img src="user-icon.png" alt="User Icon">
+          <span>Admin</span>
+        </div>
+        <ul class="navbar-nav">
+          <li><a href="#">Users</a></li>
+          <li><a href="#">Tutors</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Settings</a></li>
+        </ul>
+      </nav>
+    <div class="content">
+      <div class="tutor-requests">
+        <div class="tutor-request">
+          <img src="tutor1.jpg" alt="Tutor 1">
+          <div class="details">
+            <h3>Tutor 1</h3>
+            <p>Email: tutor1@example.com</p>
+            <p>Phone: 123-456-7890</p>
+            <p>Nationality: Country 1</p>
+            <p>Experience: 5 years</p>
+          </div>
+          <div class="dropdown">
+            <select onchange="toggleAcceptButton(this)">
+                <option value="" disabled selected hidden>Select Role</option>
+              <option value="bronze">Bronze</option>
+              <option value="silver">Silver</option>
+              <option value="gold">Gold</option>
+              <option value="platinum">Platinum</option>
+            </select>
+          </div>
+          <div class="buttons">
+            <button class="accept-button">Accept</button>
+            <button class="reject-button">Reject</button>
+          </div>
+        </div>
+        <div class="tutor-request">
+          <img src="tutor2.jpg" alt="Tutor 2">
+          <div class="details">
+            <h3>Tutor 2</h3>
+            <p>Email: tutor2@example.com</p>
+            <p>Phone: 123-456-7890</p>
+            <p>Nationality: Country 2</p>
+            <p>Experience: 3 years</p>
+          </div>
+          <div class="dropdown">
+            <select onchange="toggleAcceptButton(this)">
+                <option value="" disabled selected hidden>Select Role</option>
+              <option value="bronze">Bronze</option>
+              <option value="silver">Silver</option>
+              <option value="gold">Gold</option>
+              <option value="platinum">Platinum</option>
+            </select>
+          </div>
+          <div class="buttons">
+            <button class="accept-button">Accept</button>
+            <button class="reject-button">Reject</button>
+          </div>
+        </div>
+        <div class="tutor-request">
+          <img src="tutor3.jpg" alt="Tutor 3">
+          <div class="details">
+            <h3>Tutor 3</h3>
+            <p>Email: tutor3@example.com</p>
+            <p>Phone: 123-456-7890</p>
+            <p>Nationality: Country 3</p>
+            <p>Experience: 2 years</p>
+          </div>
+          <div class="dropdown">
+            <select onchange="toggleAcceptButton(this)">
+                <option value="" disabled selected hidden>Select Role</option>
+              <option value="bronze">Bronze</option>
+              <option value="silver">Silver</option>
+              <option value="gold">Gold</option>
+              <option value="platinum">Platinum</option>
+            </select>
+          </div>
+          <div class="buttons">
+            <button class="accept-button">Accept</button>
+            <button class="reject-button">Reject</button>
+          </div>
+        </div>
+        <div class="tutor-request">
+          <img src="tutor4.jpg" alt="Tutor 4">
+          <div class="details">
+            <h3>Tutor 4</h3>
+            <p>Email: tutor4@example.com</p>
+            <p>Phone: 123-456-7890</p>
+            <p>Nationality: Country 4</p>
+            <p>Experience: 4 years</p>
+          </div>
+          <div class="dropdown">
+            <select onchange="toggleAcceptButton(this)">
+                <option value="" disabled selected hidden>Select Role</option>
+              <option value="bronze">Bronze</option>
+              <option value="silver">Silver</option>
+              <option value="gold">Gold</option>
+              <option value="platinum">Platinum</option>
+            </select>
+          </div>
+          <div class="buttons">
+            <button class="accept-button">Accept</button>
+            <button class="reject-button">Reject</button>
+          </div>
+        </div>
+        <div class="tutor-request">
+          <img src="tutor5.jpg" alt="Tutor 5">
+          <div class="details">
+            <h3>Tutor 5</h3>
+            <p>Email: tutor5@example.com</p>
+            <p>Phone: 123-456-7890</p>
+            <p>Nationality: Country 5</p>
+            <p>Experience: 1 year</p>
+          </div>
+          <div class="dropdown">
+            <select onchange="toggleAcceptButton(this)">
+                <option value="" disabled selected hidden>Select Role</option>
+              <option value="bronze">Bronze</option>
+              <option value="silver">Silver</option>
+              <option value="gold">Gold</option>
+              <option value="platinum">Platinum</option>
+            </select>
+          </div>
+          <div class="buttons">
+            <button class="accept-button">Accept</button>
+            <button class="reject-button">Reject</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleAcceptButton(selectElement) {
+      var acceptButton = selectElement.parentElement.nextElementSibling.querySelector('.accept-button');
+      if (selectElement.value !== "") {
+        acceptButton.style.display = 'inline-block';
+      } else {
+        acceptButton.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
